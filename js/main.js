@@ -14,17 +14,47 @@ const gameBoxNode = document.querySelector("#game-box")
 
 //* VARIABLES GLOBALES DEL JUEGO
 
+let pollito = null;
 
 
 //* FUNCIONES GLOBALES DEL JUEGO
+
+function startGame() {
+
+  // 1. Cambiar las pantallas
+  splashScreenNode.style.display = "none";
+  gameScreenNode.style.display = "flex";
+
+  // 2. Añadir todos los elementos iniciales del juego
+  pollito = new Pollito();
+
+  // 3. Iniciar el intervalo de juego
+  gameIntervalId = setInterval(() => {
+    gameLoop();
+  }, Math.round(1000/60)); // 60 fps
+}
+
+function gameLoop() {
+
+}
 
 
 
 //* EVENT LISTENERS
 
+startBtnNode.addEventListener('click', startGame);
 
-
-
+window.addEventListener("keydown", (event) => {
+  if (event.key === "d") {
+    pollito.pollitoMovement("right");
+  } else if (event.key === "a") {
+    pollito.pollitoMovement("left");
+  } else if (event.key === "s") {
+    pollito.pollitoMovement("down");
+  } else if (event.key === "w") {
+    pollito.pollitoMovement("up");
+  }
+});
 
 
 
