@@ -15,6 +15,7 @@ const gameBoxNode = document.querySelector("#game-box")
 //* VARIABLES GLOBALES DEL JUEGO
 
 let pollito = null;
+let knifesArray = [];
 
 
 //* FUNCIONES GLOBALES DEL JUEGO
@@ -35,7 +36,11 @@ function startGame() {
 }
 
 function gameLoop() {
-
+  pollito.pollitoMovement();
+  
+  knifesArray.forEach((eachKnife) => {
+    eachKnife.knifeMovement();
+  })
 }
 
 
@@ -45,18 +50,37 @@ function gameLoop() {
 startBtnNode.addEventListener('click', startGame);
 
 window.addEventListener("keydown", (event) => {
-  if (event.key === "d") {
-    pollito.pollitoMovement("right");
-  } else if (event.key === "a") {
-    pollito.pollitoMovement("left");
-  } else if (event.key === "s") {
-    pollito.pollitoMovement("down");
-  } else if (event.key === "w") {
-    pollito.pollitoMovement("up");
+  if (event.key === "w" || event.key === "ArrowUp") {
+    pollito.keys.up = true;
+  } else if (event.key === "s" || event.key === "ArrowDown") {
+    pollito.keys.down = true;
+  } else if (event.key === "d" || event.key === "ArrowRight") {
+    pollito.keys.right = true;
+  } else if (event.key === "a" || event.key === "ArrowLeft") {
+    pollito.keys.left = true;
   }
 });
 
+window.addEventListener("keyup", (event) => {
+  if (event.key === "w" || event.key === "ArrowUp") {
+    pollito.keys.up = false;
+  } else if (event.key === "s" || event.key === "ArrowDown") {
+    pollito.keys.down = false;
+  } else if (event.key === "d" || event.key === "ArrowRight") {
+    pollito.keys.right = false;
+  } else if (event.key === "a" || event.key === "ArrowLeft") {
+    pollito.keys.left = false;
+  }
+});
 
+window.addEventListener("click", (event) => {
+  const mouseX = event.clientX;
+  const mouseY = event.clientY;
+
+  if (pollito) {
+    pollito.throwKnife(mouseX, mouseY);
+  }
+});
 
 
 
