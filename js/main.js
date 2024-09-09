@@ -40,9 +40,25 @@ function gameLoop() {
   
   knifesArray.forEach((eachKnife) => {
     eachKnife.knifeMovement();
+    checkIfKnifeLeft();
   })
 }
 
+function checkIfKnifeLeft() {
+
+  if (knifesArray.length === 0) {
+    return;
+  }
+
+  if ((knifesArray[0].y <= 0) ||
+      (knifesArray[0].y >= gameBoxNode.offsetHeight) ||
+      (knifesArray[0].x <= 0) ||
+      (knifesArray[0].x >= gameBoxNode.offsetWidth)) {
+    
+    knifesArray[0].node.remove();
+    knifesArray.shift();
+  }
+}
 
 
 //* EVENT LISTENERS
@@ -50,35 +66,34 @@ function gameLoop() {
 startBtnNode.addEventListener('click', startGame);
 
 window.addEventListener("keydown", (event) => {
-  if (event.key === "w" || event.key === "ArrowUp") {
+  if (event.key === "w") {
     pollito.keys.up = true;
-  } else if (event.key === "s" || event.key === "ArrowDown") {
+  } else if (event.key === "s") {
     pollito.keys.down = true;
-  } else if (event.key === "d" || event.key === "ArrowRight") {
+  } else if (event.key === "d") {
     pollito.keys.right = true;
-  } else if (event.key === "a" || event.key === "ArrowLeft") {
+  } else if (event.key === "a") {
     pollito.keys.left = true;
+  } else if (event.key === "ArrowUp") {
+    pollito.throwKnife("up");
+  } else if (event.key === "ArrowDown") {
+    pollito.throwKnife("down");
+  } else if (event.key === "ArrowLeft") {
+    pollito.throwKnife("left");
+  } else if (event.key === "ArrowRight") {
+    pollito.throwKnife("right");
   }
 });
 
 window.addEventListener("keyup", (event) => {
-  if (event.key === "w" || event.key === "ArrowUp") {
+  if (event.key === "w") {
     pollito.keys.up = false;
-  } else if (event.key === "s" || event.key === "ArrowDown") {
+  } else if (event.key === "s") {
     pollito.keys.down = false;
-  } else if (event.key === "d" || event.key === "ArrowRight") {
-    pollito.keys.right = false;
-  } else if (event.key === "a" || event.key === "ArrowLeft") {
+  } else if (event.key === "a") {
     pollito.keys.left = false;
-  }
-});
-
-window.addEventListener("click", (event) => {
-  const mouseX = event.clientX;
-  const mouseY = event.clientY;
-
-  if (pollito) {
-    pollito.throwKnife(mouseX, mouseY);
+  } else if (event.key === "d") {
+    pollito.keys.right = false;
   }
 });
 

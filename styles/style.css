@@ -1,3 +1,12 @@
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
 body {
   margin: 0;
   background-color: lightgray;
@@ -23,7 +32,7 @@ body {
 #game-box {
   background-color: darkgray;
   width:600px;
-  height:400px;
+  height:600px;
 
   position: relative; /* permite posicionar los elementos de forma absoluta dentro del game-box */
   overflow: hidden; /* previene que los elementos salgan visualmente del game-box */
@@ -40,4 +49,8 @@ body {
 
 #game-screen, #game-over-screen {
   display: none;
+}
+
+#knife {
+  animation: rotation 0.25s infinite linear;
 }

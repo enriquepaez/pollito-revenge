@@ -1,16 +1,17 @@
 class Knife {
 
-  constructor(mouseX, mouseY) {
+  constructor(direction) {
     this.x = pollito.x;
     this.y = pollito.y;
     this.h = 20;
     this.w = 20;
     this.speed = 10;
-    this.mouseX = mouseX;
-    this.mouseY = mouseY;
+    this.direction = direction;
+
 
     this.node = document.createElement("img");
     this.node.src = "../images/knife.png";
+    this.node.id = "knife";
     gameBoxNode.append(this.node);
 
     this.node.style.width = `${this.w}px`;
@@ -21,11 +22,18 @@ class Knife {
   }
 
   knifeMovement() {
-    
-    if (this.mouseY <= this.x) {
+
+    if (this.direction === "up") {
       this.y -= this.speed;
-    } else if (this.mouseY >= this.x) {
+    }
+    if (this.direction === "down") {
       this.y += this.speed;
+    }
+    if (this.direction === "left") {
+      this.x -= this.speed;
+    }
+    if (this.direction === "right") {
+      this.x += this.speed;
     }
 
     this.node.style.left = `${this.x}px`;

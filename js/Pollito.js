@@ -44,12 +44,9 @@ class Pollito {
     this.node.style.top = `${this.y}px`;
   }
 
-  throwKnife(mouseX, mouseY) {
-    let newKnife = new Knife(mouseX, mouseY);
+  throwKnife(direction) {
+    let newKnife = new Knife(direction);
     knifesArray.push(newKnife);
-
-    console.log(`RATON -> X:${mouseX}, Y:${mouseY}`);
-    console.log(`POLLITO -> X:${this.x}, Y:${this.y}`);
   }
   
 }
