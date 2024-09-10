@@ -26,7 +26,6 @@ class Pollito {
   }
 
   pollitoMovement() {
-
     if (this.keys.up && this.y >= 0) {
       this.y -= this.speed;
     }

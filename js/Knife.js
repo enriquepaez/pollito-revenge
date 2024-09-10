@@ -8,7 +8,6 @@ class Knife {
     this.speed = 10;
     this.direction = direction;
 
-
     this.node = document.createElement("img");
     this.node.src = "../images/knife.png";
     this.node.id = "knife";
