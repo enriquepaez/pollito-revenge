@@ -7,6 +7,7 @@ const gameOverScreenNode = document.querySelector("#game-over-screen")
 
 // botones
 const startBtnNode = document.querySelector("#start-btn")
+const restartBtnNode = document.querySelector("#restart-btn")
 
 // game box
 const gameBoxNode = document.querySelector("#game-box")
@@ -28,6 +29,7 @@ function startGame() {
 
   // 1. Cambiar las pantallas
   splashScreenNode.style.display = "none";
+  gameOverScreenNode.style.display = "none";
   gameScreenNode.style.display = "flex";
 
   // 2. Añadir todos los elementos iniciales del juego
@@ -199,7 +201,8 @@ function gameOver() {
 
 //* EVENT LISTENERS
 
-startBtnNode.addEventListener('click', startGame);
+startBtnNode.addEventListener("click", startGame);
+restartBtnNode.addEventListener("click", startGame);
 
 window.addEventListener("keydown", (event) => {
   if (event.key === "w") {

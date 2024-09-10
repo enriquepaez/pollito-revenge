@@ -12,7 +12,7 @@ body {
   background-color: lightgray;
 }
 
-#start-btn {
+#start-btn, #restart-btn {
   background-color: red;
   color: white;
   padding: 20px;
@@ -27,6 +27,54 @@ body {
   justify-content: center;
   align-items: center;
   margin: 50px;
+}
+
+#wide-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h3 {
+  margin: 0 auto;
+}
+
+#logo-container {
+  text-align: center;
+  width: 100%;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sub-container {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+#controls-container, #enemies-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.control, .enemy {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  width: 50%;
 }
 
 #game-box {

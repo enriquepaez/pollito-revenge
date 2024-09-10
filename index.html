@@ -7,9 +7,55 @@
   <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
-   <!-- PANTALLA DE INICIO -->
-   <div id="splash-screen" class="container">
-    <img src="./images/pollito-revenge-logo.png" width="500" alt="logo">
+  <!-- PANTALLA DE INICIO -->
+  <div id="splash-screen" class="container">
+    
+    <div id="wide-container">
+      <img src="./images/pollito-revenge-logo.png" width="500" alt="logo">
+      <p>El pollito está en modo diablo. Después de tantos impactos con tuberías, ha decidido que es hora de tomar cartas en el asunto.
+        Armado con un cuchillo y con su actitud, está listo para darle a la venganza un nuevo significado.</p>
+    </div>
+
+    <div class="content-container">
+      <div id="controls-container">
+        <h3>Controles</h3>
+
+        <div class="sub-container">
+          <div class="control">
+            <img class="controls-img" src="./images/wasd.png" alt="Teclas wasd">
+            <p>Usa las teclas WASD para moverte por la pantalla</p>
+          </div>
+  
+          <div class="control">
+            <img class="controls-img" src="./images/flechas.png" alt="Flechas teclado">
+            <p>Usa las FLECHAS del teclado para lanzar cuchillos en cada dirección</p>
+          </div>
+        </div>
+        
+      </div>
+  
+      <div id="enemies-container">
+        <h3>Enemigos</h3>
+
+        <div class="sub-container">
+          <div class="enemy">
+            <img class="enemy-img" src="./images/potato.png" alt="Imagen del Señor Patata">
+            <p>El SEÑOR PATATA es un enemigo normal</p>
+          </div>
+  
+          <div class="enemy">
+            <img class="enemy-img" src="./images/naruto.png" alt="Imagen de Naruto">
+            <p>NARUTO corre muy rápido, ¡Ten cuidado con ellos!</p>
+          </div>
+  
+          <div class="enemy">
+            <img class="enemy-img" src="./images/bob.png" alt="Imagen de Bob Esponja">
+            <p>BOB ESPONJA aguanta el doble de puñaladas, ¡Dales duro!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <button id="start-btn">INICIAR VENGANZA!</button>
   </div>
   
@@ -24,6 +70,7 @@
   <!-- PANTALLA FINAL -->
   <div id="game-over-screen" class="container">
     <img src="..." width="500" alt="logo">
+    <button id="restart-btn">REINICIAR VENGANZA!</button>
   </div>
 
 <script src="./js/main.js"></script>
