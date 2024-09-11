@@ -8,7 +8,6 @@ class Enemy {
     this.w = 40;
     this.startPosition = startPosition;
     this.type = type;
-    
 
     this.node = document.createElement("img");
 
@@ -49,5 +48,24 @@ class Enemy {
 
     this.node.style.left = `${this.x}px`;
     this.node.style.top = `${this.y}px`;
+  }
+
+  throwArm() {
+    if (this.type === "potato") {
+      let direction;
+        
+      if (this.startPosition === "top") {
+        direction = "down";
+      } else if (this.startPosition === "bottom") {
+        direction = "up";
+      } else if (this.startPosition === "left") {
+        direction = "right";
+      } else if (this.startPosition === "right") {
+        direction = "left";
+      }
+
+      let newArm = new Proyectile(this.x, this.y, direction, "arm");
+      armsArray.push(newArm);
+    }
   }
 }

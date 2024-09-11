@@ -17,6 +17,7 @@ const gameBoxNode = document.querySelector("#game-box")
 
 let pollito = null;
 let knifesArray = [];
+let armsArray = [];
 let enemiesArray = [];
 let enemiesFrecuency = 500;
 
@@ -44,39 +45,51 @@ function startGame() {
   enemiesIntervalId = setInterval(() => {
     createEnemy();
   }, enemiesFrecuency);
+
+  armsIntervalId = setInterval (() => {
+    enemiesArray.forEach((enemy) => {
+      enemy.throwArm();
+    });
+  }, 1000);
 }
 
 function gameLoop() {
 
   pollito.pollitoMovement();
+  pollito.detectCollision(enemiesArray);
+  pollito.detectCollision(armsArray);
   
   knifesArray.forEach((eachKnife) => {
-    eachKnife.knifeMovement();
-    checkIfKnifeLeft();
+    eachKnife.proyectileMovement();
+    checkIfObjectLeft(knifesArray);
   })
 
   enemiesArray.forEach((eachEnemy) => {
     eachEnemy.enemyMovement();
-    checkIfEnemyLeft();
+    checkIfObjectLeft(enemiesArray);
   })
 
-  detectCollisionWithEnemy();
+  armsArray.forEach((eachArm) => {
+    eachArm.proyectileMovement();
+    checkIfObjectLeft(armsArray);
+  })
+
   killEnemy();
 }
 
-function checkIfKnifeLeft() {
+function checkIfObjectLeft(array) {
 
-  if (knifesArray.length === 0) {
+  if (array.length === 0) {
     return;
   }
 
-  if ((knifesArray[0].y <= 0) ||
-      (knifesArray[0].y >= gameBoxNode.offsetHeight) ||
-      (knifesArray[0].x <= 0) ||
-      (knifesArray[0].x >= gameBoxNode.offsetWidth)) {
+  if ((array[0].y <= 0) ||
+      (array[0].y >= gameBoxNode.offsetHeight) ||
+      (array[0].x <= 0) ||
+      (array[0].x >= gameBoxNode.offsetWidth)) {
     
-    knifesArray[0].node.remove();
-    knifesArray.shift();
+    array[0].node.remove();
+    array.shift();
   }
 }
 
@@ -124,37 +137,6 @@ function createEnemy() {
   enemiesArray.push(newEnemy);
 }
 
-function checkIfEnemyLeft() {
-
-  if (enemiesArray.length === 0) {
-    return;
-  }
-
-  if ((enemiesArray[0].y <= 0) ||
-      (enemiesArray[0].y >= gameBoxNode.offsetHeight) ||
-      (enemiesArray[0].x <= 0) ||
-      (enemiesArray[0].x >= gameBoxNode.offsetWidth)) {
-    
-    enemiesArray[0].node.remove();
-    enemiesArray.shift();
-  }
-}
-
-function detectCollisionWithEnemy() {
-
-  enemiesArray.forEach((eachEnemy) => {
-
-    if (
-      pollito.x < eachEnemy.x + eachEnemy.w &&
-      pollito.x + pollito.w > eachEnemy.x &&
-      pollito.y < eachEnemy.y + eachEnemy.h &&
-      pollito.y + pollito.h > eachEnemy.y
-    ) {
-      gameOver();
-    }
-  })
-}
-
 function killEnemy() {
   enemiesArray.forEach((eachEnemy) => {
 
@@ -184,6 +166,7 @@ function gameOver() {
   // 1. Limpiar los intervalos
   clearInterval(gameIntervalId);
   clearInterval(enemiesIntervalId);
+  clearInterval(armsIntervalId);
 
   // 2. Limpiar la caja de juego
   gameBoxNode.innerHTML = "";
@@ -191,6 +174,7 @@ function gameOver() {
   // 3. Reiniciar todos los elementos del juego
   pollito = null;
   knifesArray = [];
+  armsArray = [];
   enemiesArray = [];
 
   // 4. Cambiar de pantallas
@@ -235,35 +219,3 @@ window.addEventListener("keyup", (event) => {
     pollito.keys.right = false;
   }
 });
-
-
-
-
-//* PLANIFICACION
-
-// crear caja de juego
-// crear pantalla inicio
-// crear pantalla juego
-// crear pantalla final
-
-// hacer imagen
-
-// pollito (x, y, w, h)
-// enemigos (x, y, w, h)
-
-// el pollito aparece una vez al inicio del juego
-// aparecen enemigos
-
-// colisiones pollito contra enemigos (game over)
-
-// movimiento del pollito
-// movimiento enemigos
-
-// score => por tiempo
-
-
-// *BONUS
-
-// incrementar dificultad (enemigos mas rapidos, mas enemigos)
-// mejoras para el personaje
-// enemigos se mueven hacia jugador

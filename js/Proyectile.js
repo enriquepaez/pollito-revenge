@@ -1,16 +1,23 @@
-class Knife {
+class Proyectile {
 
-  constructor(direction) {
-    this.x = pollito.x;
-    this.y = pollito.y;
+  constructor(x, y, direction, type) {
+    this.x = x;
+    this.y = y;
     this.h = 20;
     this.w = 20;
     this.speed = 10;
     this.direction = direction;
+    this.type = type;
 
     this.node = document.createElement("img");
-    this.node.src = "./images/knife.png";
-    this.node.id = "knife";
+
+    if (this.type === "knife") {
+      this.node.src = "./images/knife.png";
+    } else if (this.type === "arm") {
+      this.node.src = "./images/potato-arm.png";
+    }
+    
+    this.node.id = "proyectile";
     gameBoxNode.append(this.node);
 
     this.node.style.width = `${this.w}px`;
@@ -20,7 +27,7 @@ class Knife {
     this.node.style.left = `${this.x}px`;
   }
 
-  knifeMovement() {
+  proyectileMovement() {
 
     if (this.direction === "up") {
       this.y -= this.speed;

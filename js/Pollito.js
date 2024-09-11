@@ -44,8 +44,21 @@ class Pollito {
   }
 
   throwKnife(direction) {
-    let newKnife = new Knife(direction);
+    let newKnife = new Proyectile(this.x, this.y, direction, "knife");
     knifesArray.push(newKnife);
+  }
+
+  detectCollision(array) {
+    array.forEach((element) => {
+      if (
+        this.x < element.x + element.w &&
+        this.x + this.w > element.x &&
+        this.y < element.y + element.h &&
+        this.y + this.h > element.y
+      ) {
+        gameOver();
+      }
+    })
   }
   
 }
