@@ -9,7 +9,7 @@ class Knife {
     this.direction = direction;
 
     this.node = document.createElement("img");
-    this.node.src = "../images/knife.png";
+    this.node.src = "./images/knife.png";
     this.node.id = "knife";
     gameBoxNode.append(this.node);
 

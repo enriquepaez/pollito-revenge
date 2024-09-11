@@ -15,7 +15,7 @@ class Pollito {
     };
 
     this.node = document.createElement("img");
-    this.node.src = "../images/baby-chicken.png";
+    this.node.src = "./images/baby-chicken.png";
     gameBoxNode.append(this.node);
 
     this.node.style.width = `${this.w}px`;

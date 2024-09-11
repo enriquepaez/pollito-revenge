@@ -15,15 +15,15 @@ class Enemy {
     if (type === "potato") {
       this.speed = 2;
       this.life = 1;
-      this.node.src = "../images/potato.png";
+      this.node.src = "./images/potato.png";
     } else if (type === "naruto") {
       this.speed = 4;
       this.life = 1;
-      this.node.src = "../images/naruto.png";
+      this.node.src = "./images/naruto.png";
     } else if (type === "bob") {
       this.speed = 1;
       this.life = 2;
-      this.node.src = "../images/bob.png";
+      this.node.src = "./images/bob.png";
     }
     
     this.node.id = "enemy";

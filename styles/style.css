@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 @keyframes rotation {
   from {
     transform: rotate(0deg);
@@ -7,55 +9,74 @@
   }
 }
 
-body {
-  margin: 0;
-  background-color: lightgray;
-}
-
 #start-btn, #restart-btn {
   background-color: red;
   color: white;
   padding: 20px;
   font-size: 20px;
-  margin-top: 40px;
+  margin: 40px;
   border-radius: 10px; 
 }
 
-.container {
+body {
+  margin: 0;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  flex-direction: column;
+}
+
+.container, #wide-container, .content-container, #text-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 50px;
-}
-
-#wide-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-h3 {
   margin: 0 auto;
+  width: 80%;
+  max-width: 1200px;
 }
 
-#logo-container {
-  text-align: center;
+#wide-container img {
   width: 100%;
+  max-width: 800px;
+  height: auto;
+}
+
+h2, h3, p {
+  margin: 0;
+  font-family: "Roboto";
+}
+
+h2 {
+  font-family: "Protest Guerrilla";
+}
+
+#wide-container img {
+  width: 100%;
+  max-width: 800px;
 }
 
 .content-container {
-  display: flex;
   justify-content: space-between;
+  gap: 50px;
+  margin: 20px auto;
   width: 100%;
+  max-width: 1200px;
 }
 
 .sub-container {
   display: flex;
-  border: 1px solid black;
+  height: 200px;
+  width: 80%;
+  gap: 5%;
+  border: 2px solid black;
   border-radius: 20px;
   padding: 10px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: space-evenly;
 }
 
 #controls-container, #enemies-container {
@@ -67,32 +88,38 @@ h3 {
 }
 
 .control, .enemy {
-  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  padding: 10px;
 }
 
-img {
-  width: 50%;
+.control img, .enemy img {
+  width: 40%;
+  max-width: 150px;
+}
+
+.enemy img {
+  width: 40%;
+  max-width: 100px;
 }
 
 #game-box {
   background-color: darkgray;
-  width:600px;
-  height:600px;
-
-  position: relative; /* permite posicionar los elementos de forma absoluta dentro del game-box */
-  overflow: hidden; /* previene que los elementos salgan visualmente del game-box */
-  user-select: none; /* previene que los elementos del game-box sean resaltados al hacer click */
-
+  width: 600px;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
   background-image: url("../images/grass.jpg");
   background-position: center;
   background-size: cover;
+  margin: 0 auto;
 }
 
 #game-box * {
-  pointer-events: none; /* previene que todos los elementos del game-box sean arrastrados al clickar sobre ellos */
+  pointer-events: none;
 }
 
 #game-screen, #game-over-screen {
