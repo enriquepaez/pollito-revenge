@@ -11,11 +11,12 @@
 
 #start-btn, #restart-btn {
   background-color: red;
-  color: white;
+  color: black;
   padding: 20px;
   font-size: 20px;
   margin: 40px;
-  border-radius: 10px; 
+  border-radius: 10px;
+  font-family: "Roboto";
 }
 
 body {
@@ -24,11 +25,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  
   flex-direction: column;
 }
 
-.container, #wide-container, .content-container, #text-container {
+#splash-screen, #game-over-screen {
+  background-image: url("../images/fondo.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.container, .content-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,10 +44,16 @@ body {
   max-width: 1200px;
 }
 
+#wide-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #wide-container img {
   width: 100%;
   max-width: 800px;
-  height: auto;
 }
 
 h2, h3, p {
@@ -50,7 +62,12 @@ h2, h3, p {
 }
 
 h2 {
-  font-family: "Protest Guerrilla";
+  width: 80%;
+  align-items: center;
+}
+
+p {
+  font-size: 14px;
 }
 
 #wide-container img {
@@ -74,9 +91,10 @@ h2 {
   border: 2px solid black;
   border-radius: 20px;
   padding: 10px;
-  margin: 0 auto;
+  margin: 10px auto;
   justify-content: center;
   align-items: space-evenly;
+  background-color: white;
 }
 
 #controls-container, #enemies-container {
@@ -95,14 +113,14 @@ h2 {
   padding: 10px;
 }
 
-.control img, .enemy img {
-  width: 40%;
+.control img {
+  width: 70%;
   max-width: 150px;
 }
 
 .enemy img {
-  width: 40%;
-  max-width: 100px;
+  height: 70%;
+  max-height: 150px;
 }
 
 #game-box {
@@ -115,11 +133,22 @@ h2 {
   background-image: url("../images/grass.jpg");
   background-position: center;
   background-size: cover;
-  margin: 0 auto;
+  margin: 100px;
 }
 
-#game-box * {
-  pointer-events: none;
+#timer, #points {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 5px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+}
+
+#points {
+  top: 40px;
 }
 
 #game-screen, #game-over-screen {
@@ -128,4 +157,13 @@ h2 {
 
 #proyectile {
   animation: rotation 0.25s infinite linear;
+}
+
+#game-over-screen img {
+  width: 30%;
+  max-width: 300px;
+}
+
+#game-over-screen h2 {
+  width: 50%;
 }

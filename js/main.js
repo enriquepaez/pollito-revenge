@@ -5,6 +5,10 @@ const splashScreenNode = document.querySelector("#splash-screen")
 const gameScreenNode = document.querySelector("#game-screen")
 const gameOverScreenNode = document.querySelector("#game-over-screen")
 
+// interfaz
+const pointsDiv = document.getElementById("points");
+const timer = document.getElementById("timer");
+
 // botones
 const startBtnNode = document.querySelector("#start-btn")
 const restartBtnNode = document.querySelector("#restart-btn")
@@ -20,9 +24,13 @@ let knifesArray = [];
 let armsArray = [];
 let enemiesArray = [];
 let enemiesFrecuency = 500;
+let points = 0;
+let remainingTime = 59;
 
 let gameIntervalId = null;
 let enemiesIntervalId = null;
+let armsIntervalId = null;
+let timerIntervalId = null;
 
 //* FUNCIONES GLOBALES DEL JUEGO
 
@@ -50,6 +58,15 @@ function startGame() {
     enemiesArray.forEach((enemy) => {
       enemy.throwArm();
     });
+  }, 1000);
+
+  timerIntervalId = setInterval(() => {
+    timer.innerText = `Tiempo restante: 00:${remainingTime}`;
+    remainingTime--;
+
+    if (remainingTime <= 0) {
+      gameOver();
+    }
   }, 1000);
 }
 
@@ -154,7 +171,8 @@ function killEnemy() {
     });
 
     if (eachEnemy.life <= 0) {
-      console.log("muerto");
+      points += 5;
+      pointsDiv.innerHTML = `Puntuación: ${points}`;
       eachEnemy.node.remove();
       enemiesArray.splice(enemiesArray.indexOf(eachEnemy), 1);
     }
@@ -167,6 +185,7 @@ function gameOver() {
   clearInterval(gameIntervalId);
   clearInterval(enemiesIntervalId);
   clearInterval(armsIntervalId);
+  clearInterval(timerIntervalId);
 
   // 2. Limpiar la caja de juego
   gameBoxNode.innerHTML = "";
@@ -176,6 +195,11 @@ function gameOver() {
   knifesArray = [];
   armsArray = [];
   enemiesArray = [];
+  points = 0;
+  remainingTime = 59;
+  pointsDiv.innerHTML = `Puntuación: ${points}`;
+  timer.innerText = `Tiempo restante: 00:${remainingTime}`;
+
 
   // 4. Cambiar de pantallas
   gameScreenNode.style.display = "none";

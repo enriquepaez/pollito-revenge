@@ -11,11 +11,10 @@
   <div id="splash-screen" class="container">
     
     <div id="wide-container">
-      <img src="./images/pollito-revenge-logo.png" width="500" alt="logo">
-      <div id="text-container">
-        <h2>El pollito está en modo diablo. Después de tantos impactos con tuberías, ha decidido que es hora de tomar
+      <img src="./images/pollito-revenge-logo.png" alt="logo">
+
+      <h2>El pollito está en modo diablo. Después de tantos impactos con tuberías, ha decidido que es hora de tomar
         cartas en el asunto. Armado con un cuchillo, está listo para darle a la venganza un nuevo significado.</h2>
-      </div>
     </div>
 
     <div class="content-container">
@@ -42,7 +41,7 @@
         <div class="sub-container">
           <div class="enemy">
             <img class="enemy-img" src="./images/potato.png" alt="Imagen del Señor Patata">
-            <p>El SEÑOR PATATA te tirará su brazo ¡Esquívalo!</p>
+            <p>El SEÑOR PATATA te tirará su brazo, ¡Esquívalo!</p>
           </div>
   
           <div class="enemy">
@@ -52,10 +51,12 @@
   
           <div class="enemy">
             <img class="enemy-img" src="./images/bob.png" alt="Imagen de Bob Esponja">
-            <p>BOB ESPONJA aguanta el doble de puñaladas, ¡Dales duro!</p>
+            <p>BOB ESPONJA aguanta dos puñaladas, ¡Dale duro!</p>
           </div>
         </div>
       </div>
+
+      <h2>Cada enemigo eliminado te da 5 puntos. ¡Consigue la máxima puntuación posible en 1 minuto!</h2>
     </div>
 
     <button id="start-btn">INICIAR VENGANZA!</button>
@@ -64,6 +65,8 @@
   <!-- PANTALLA DE JUEGO -->
   <div id="game-screen" class="container">
     <!-- Elementos del juego como puntuación, vidas, etc deberia ir aqui (dentro del game-screen pero fuera del game-box) -->
+    <div id="timer">Tiempo restante: 01:00</div>
+    <div id="points">Puntuación: 0</div>
     <div id="game-box">
       <!-- Los elementos del juego serán añadidos desde JS con manipulación de DOM -->
     </div>
@@ -71,7 +74,10 @@
   
   <!-- PANTALLA FINAL -->
   <div id="game-over-screen" class="container">
-    <img src="..." width="500" alt="logo">
+    <img src="./images/roast-chicken.png" alt="Roast Chicken">
+
+    <h2>El pollito ha fracasado y lo han metido al horno. A veces la venganza no se sirve fría.</h2>
+
     <button id="restart-btn">REINICIAR VENGANZA!</button>
   </div>
 
