@@ -10,13 +10,13 @@
 }
 
 #start-btn, #restart-btn {
-  background-color: red;
-  color: black;
+  background-color: #710000;
+  color: white;
   padding: 20px;
   font-size: 20px;
   margin: 40px;
   border-radius: 10px;
-  font-family: "Roboto";
+  font-family: "Protest Guerrilla", sans-serif;
 }
 
 body {
@@ -26,6 +26,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: "Roboto", sans-serif;
 }
 
 #splash-screen, #game-over-screen {
@@ -60,7 +61,10 @@ body {
 
 h2, h3, p {
   margin: 0;
-  font-family: "Roboto";
+}
+
+h2 {
+  font-family: "Protest Guerrilla", sans-serif;
 }
 
 p {
@@ -86,7 +90,7 @@ p {
   margin: 10px auto;
   justify-content: center;
   align-items: space-evenly;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 #controls-container, #enemies-container {
@@ -115,6 +119,22 @@ p {
   max-height: 150px;
 }
 
+#name {
+  font-size: 16px;
+  padding: 10px;
+  border: 2px solid black; 
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+  margin: 10px 0;
+  background-color:  rgba(255, 255, 255, 0.5);
+}
+
+#name::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
 #game-box {
   background-color: darkgray;
   width: 600px;
@@ -132,7 +152,7 @@ p {
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 5px;
   border-radius: 5px;
   font-family: Arial, sans-serif;
@@ -162,8 +182,31 @@ p {
 #game-over-screen img {
   width: 30%;
   max-width: 300px;
+  margin-top: 50px;
 }
 
 #game-over-screen h3 {
   width: 50%;
+  margin: 30px;
+}
+
+#score-ranking {
+  width: 45%;
+  max-width: 600px;
+  margin: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#score-ranking li {
+  justify-content: space-between;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
+
+#score-ranking li:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.1);
 }

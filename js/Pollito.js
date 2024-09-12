@@ -7,6 +7,8 @@ class Pollito {
     this.h = 30;
     this.w = 30;
     this.speed = 10;
+    this.canThrowKnife = true;
+    this.lastKnifeDirection = null;
     this.keys = {
       up: false,
       down: false,
@@ -44,8 +46,20 @@ class Pollito {
   }
 
   throwKnife(direction) {
-    let newKnife = new Proyectile(this.x, this.y, direction, "knife");
-    knifesArray.push(newKnife);
+    const knifeTimer = 150;
+
+    if (this.canThrowKnife && this.lastKnifeDirection !== direction) {
+      let newKnife = new Proyectile(this.x, this.y, direction, "knife");
+      knifesArray.push(newKnife);
+
+      this.canThrowKnife = false;
+      this.lastDirection = direction;
+
+      setTimeout(() => {
+        this.canThrowKnife = true;
+        this.lastDirection = null;
+      }, knifeTimer);
+    }
   }
 
   detectCollision(array) {

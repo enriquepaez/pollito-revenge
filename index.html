@@ -58,19 +58,18 @@
       </div>
 
       <div class="wide-container">
-        <h3>Cada enemigo eliminado te da 5 puntos. ¡Consigue la máxima puntuación posible en 1 minuto!</h3>
-        <label for="name">Escribe tu nombre: </label>
-        <input type="text" id="name" placeholder="Nombre">
+        <h3>Cada enemigo eliminado te da 5 puntos. Si llegas al final de la partida sumarás 100 más.<br>¡Consigue la máxima puntuación posible en 30 segundos!</h3>
       </div>
     </div>
 
+    <input type="text" id="name" placeholder="Escribe tu nombre">
     <button id="start-btn">INICIAR VENGANZA!</button>
   </div>
   
   <!-- PANTALLA DE JUEGO -->
   <div id="game-screen" class="container">
     <!-- Elementos del juego como puntuación, vidas, etc deberia ir aqui (dentro del game-screen pero fuera del game-box) -->
-    <div id="timer">Tiempo restante: 01:00</div>
+    <div id="timer">Tiempo restante: 00:30</div>
     <div id="score">Puntuación: 0</div>
     <div id="music-control">
       <button id="music-play-btn">
@@ -84,9 +83,9 @@
   
   <!-- PANTALLA FINAL -->
   <div id="game-over-screen" class="container">
-    <img src="./images/roast-chicken.png" alt="Roast Chicken">
-    <h2>Puntuaciones: </h2>
-    <ul id="score-ranking"></ul>
+    <img id="game-over-image" src="./images/roast-chicken.png" alt="Roast Chicken">
+    <h2 id="h2-ranking">Clasificación</h2>
+    <ol id="score-ranking"></ol>
     <button id="restart-btn">REINICIAR VENGANZA!</button>
   </div>
 

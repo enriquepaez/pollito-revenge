@@ -9,6 +9,8 @@ const gameOverScreenNode = document.getElementById("game-over-screen");
 const scoreDisplay = document.getElementById("score");
 const timer = document.getElementById("timer");
 const inputName = document.getElementById("name");
+const gameOverImage = document.getElementById("game-over-image");
+const h2Score = document.getElementById("h2-ranking");
 const scoreRanking = document.getElementById("score-ranking");
 
 // audio
@@ -33,7 +35,7 @@ let armsArray = [];
 let enemiesArray = [];
 let enemiesFrecuency = 500;
 let score = 0;
-let remainingTime = 59;
+let remainingTime = 30;
 let playerName = "";
 let totalScores = [];
 let bestScores = [];
@@ -54,12 +56,18 @@ function startGame() {
 
   // 2. Añadir todos los elementos iniciales del juego
   pollito = new Pollito();
+  scoreDisplay.innerHTML = `Puntuación: ${score}`;
+  timer.innerText = `Tiempo restante: 00:${remainingTime}`;
   playerName = inputName.value;
 
+  if (playerName === "") {
+    playerName = "Desconocido";
+  }
+
   // 3. Ajustar volúmenes de sonido e iniciar música
-  gameMusic.volume = 0.2;
-  stabSound.volume = 0.5;
-  chickenSound.volume = 0.5;
+  gameMusic.volume = 0.05;
+  stabSound.volume = 0.1;
+  chickenSound.volume = 0.1;
   gameMusic.play();
 
   // 4. Iniciar el intervalo de juego
@@ -109,7 +117,7 @@ function gameLoop() {
     checkIfObjectLeft(armsArray);
   })
 
-  killEnemy();
+  hitEnemy();
 }
 
 function checkIfObjectLeft(array) {
@@ -172,7 +180,7 @@ function createEnemy() {
   enemiesArray.push(newEnemy);
 }
 
-function killEnemy() {
+function hitEnemy() {
   enemiesArray.forEach((eachEnemy) => {
 
     knifesArray.forEach((eachKnife) => {
@@ -184,6 +192,11 @@ function killEnemy() {
       ) { 
           stabSound.play();
           eachEnemy.life--;
+
+          if (eachEnemy.type === "bob") {
+            eachEnemy.node.src = "./images/bob-hit.png";
+          }
+
           eachKnife.node.remove();
           knifesArray.splice(knifesArray.indexOf(eachKnife), 1);
         }
@@ -209,10 +222,8 @@ function gameOver() {
   // 2. Limpiar la caja de juego
   gameBoxNode.innerHTML = "";
 
-  // 3. Guardar la puntuación en el localStorage
-  saveScore(playerName, score);
 
-  // 4. Preparar pantalla final
+  // 3. Preparar pantalla final
   const previousEndMessage = gameOverScreenNode.querySelector("h3");
 
   if (previousEndMessage) {
@@ -222,28 +233,32 @@ function gameOver() {
   const endMessage = document.createElement("h3");
 
   if (remainingTime <= 0) {
+    score += 100;
+    gameOverImage.setAttribute("src", "./images/winner.png")
     endMessage.innerText = `¡Victoria del pollito! La venganza se sirve caliente y el granjero no sabe lo que le espera.\n\n${playerName}, has conseguido ${score} puntos.`;
   } else {
     endMessage.innerText = `El pollito ha fracasado y lo han metido al horno. A veces la venganza no se sirve fría.\n\n${playerName}, has conseguido ${score} puntos.`;
   }
 
-  gameOverScreenNode.insertBefore(endMessage, scoreRanking);
+  gameOverScreenNode.insertBefore(endMessage, h2Score);
   scoreRanking.innerHTML = "";
+
+  saveScore(playerName, score);
   showScores();
 
-  // 5. Reiniciar todos los elementos del juego
+  // 4. Reiniciar todos los elementos del juego
   pollito = null;
   knifesArray = [];
   armsArray = [];
   enemiesArray = [];
   score = 0;
-  remainingTime = 59;
+  remainingTime = 30;
   score.innerHTML = `Puntuación: ${score}`;
   timer.innerText = `Tiempo restante: 00:${remainingTime}`;
   gameMusic.pause();
   gameMusic.currentTime = 0;
 
-  // 6. Cambiar de pantallas
+  // 5. Cambiar de pantallas
   gameScreenNode.style.display = "none";
   gameOverScreenNode.style.display = "flex";
 }
@@ -323,10 +338,8 @@ window.addEventListener("keyup", (event) => {
 musicPlayBtn.addEventListener("click", () => {
   if (gameMusic.paused) {
     gameMusic.play();
-    console.log("Se ha comenzado/reanudado la reproducción");
   } else {
     gameMusic.pause();
-    console.log("Se ha pausado la reproducción");
   }
   
 });
