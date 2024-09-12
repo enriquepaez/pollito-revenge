@@ -56,6 +56,7 @@ class Pollito {
         this.y < element.y + element.h &&
         this.y + this.h > element.y
       ) {
+        chickenSound.play();
         gameOver();
       }
     })

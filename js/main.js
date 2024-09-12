@@ -1,9 +1,9 @@
 //* ELEMENTOS PRINCIPALES DEL DOM
 
 // pantallas
-const splashScreenNode = document.querySelector("#splash-screen")
-const gameScreenNode = document.querySelector("#game-screen")
-const gameOverScreenNode = document.querySelector("#game-over-screen")
+const splashScreenNode = document.getElementById("splash-screen");
+const gameScreenNode = document.getElementById("game-screen");
+const gameOverScreenNode = document.getElementById("game-over-screen");
 
 // interfaz
 const scoreDisplay = document.getElementById("score");
@@ -11,12 +11,18 @@ const timer = document.getElementById("timer");
 const inputName = document.getElementById("name");
 const scoreRanking = document.getElementById("score-ranking");
 
+// audio
+const gameMusic = new Audio("../audio/game-music.mp3");
+const stabSound = new Audio("../audio/stab-sound.wav");
+const chickenSound = new Audio("../audio/chicken-sound.wav");
+
 // botones
-const startBtnNode = document.querySelector("#start-btn")
-const restartBtnNode = document.querySelector("#restart-btn")
+const startBtnNode = document.getElementById("start-btn");
+const restartBtnNode = document.getElementById("restart-btn");
+const musicPlayBtn = document.getElementById("music-play-btn");
 
 // game box
-const gameBoxNode = document.querySelector("#game-box")
+const gameBoxNode = document.getElementById("game-box");
 
 
 //* VARIABLES GLOBALES DEL JUEGO
@@ -27,7 +33,7 @@ let armsArray = [];
 let enemiesArray = [];
 let enemiesFrecuency = 500;
 let score = 0;
-let remainingTime = 10;
+let remainingTime = 59;
 let playerName = "";
 let totalScores = [];
 let bestScores = [];
@@ -50,12 +56,18 @@ function startGame() {
   pollito = new Pollito();
   playerName = inputName.value;
 
-  // 3. Iniciar el intervalo de juego
+  // 3. Ajustar volúmenes de sonido e iniciar música
+  gameMusic.volume = 0.2;
+  stabSound.volume = 0.5;
+  chickenSound.volume = 0.5;
+  gameMusic.play();
+
+  // 4. Iniciar el intervalo de juego
   gameIntervalId = setInterval(() => {
     gameLoop();
   }, Math.round(1000/60)); // 60 fps
 
-  // 4. Iniciar otros intervalos que requiera el juego
+  // 5. Iniciar otros intervalos que requiera el juego
   enemiesIntervalId = setInterval(() => {
     createEnemy();
   }, enemiesFrecuency);
@@ -169,7 +181,8 @@ function killEnemy() {
         eachKnife.x + eachKnife.w > eachEnemy.x &&
         eachKnife.y < eachEnemy.y + eachEnemy.h &&
         eachKnife.y + eachKnife.h > eachEnemy.y
-      ) {
+      ) { 
+          stabSound.play();
           eachEnemy.life--;
           eachKnife.node.remove();
           knifesArray.splice(knifesArray.indexOf(eachKnife), 1);
@@ -227,6 +240,8 @@ function gameOver() {
   remainingTime = 59;
   score.innerHTML = `Puntuación: ${score}`;
   timer.innerText = `Tiempo restante: 00:${remainingTime}`;
+  gameMusic.pause();
+  gameMusic.currentTime = 0;
 
   // 6. Cambiar de pantallas
   gameScreenNode.style.display = "none";
@@ -267,9 +282,11 @@ function showScores() {
 
 //* EVENT LISTENERS
 
+// botones
 startBtnNode.addEventListener("click", startGame);
 restartBtnNode.addEventListener("click", startGame);
 
+// controles
 window.addEventListener("keydown", (event) => {
   if (event.key === "w") {
     pollito.keys.up = true;
@@ -300,4 +317,16 @@ window.addEventListener("keyup", (event) => {
   } else if (event.key === "d") {
     pollito.keys.right = false;
   }
+});
+
+// audio
+musicPlayBtn.addEventListener("click", () => {
+  if (gameMusic.paused) {
+    gameMusic.play();
+    console.log("Se ha comenzado/reanudado la reproducción");
+  } else {
+    gameMusic.pause();
+    console.log("Se ha pausado la reproducción");
+  }
+  
 });

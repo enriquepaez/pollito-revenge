@@ -128,7 +128,7 @@ p {
   margin: 100px;
 }
 
-#timer, #score {
+#timer, #score, #music-play-btn {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -141,6 +141,14 @@ p {
 
 #score {
   top: 40px;
+}
+
+#music-play-btn {
+  top: 80px;
+}
+
+#music-play-btn img {
+  width: 20px;
 }
 
 #game-screen, #game-over-screen {
