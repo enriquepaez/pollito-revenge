@@ -5,21 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pollito Revenge</title>
   <link rel="stylesheet" href="./styles/style.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.png">
 </head>
 <body>
   <!-- PANTALLA DE INICIO -->
   <div id="splash-screen" class="container">
     
-    <div id="wide-container">
+    <div class="wide-container">
       <img src="./images/pollito-revenge-logo.png" alt="logo">
 
-      <h2>El pollito está en modo diablo. Después de tantos impactos con tuberías, ha decidido que es hora de tomar
-        cartas en el asunto. Armado con un cuchillo, está listo para darle a la venganza un nuevo significado.</h2>
+      <h3>El pollito está en modo diablo. Después de tantos impactos con tuberías, ha decidido que es hora de tomar
+        cartas en el asunto. Armado con un cuchillo, está listo para darle a la venganza un nuevo significado.</h3>
     </div>
 
     <div class="content-container">
       <div id="controls-container">
-        <h3>Controles</h3>
+        <h2>Controles</h2>
 
         <div class="sub-container">
           <div class="control">
@@ -36,7 +37,7 @@
       </div>
   
       <div id="enemies-container">
-        <h3>Enemigos</h3>
+        <h2>Enemigos</h2>
 
         <div class="sub-container">
           <div class="enemy">
@@ -56,7 +57,11 @@
         </div>
       </div>
 
-      <h2>Cada enemigo eliminado te da 5 puntos. ¡Consigue la máxima puntuación posible en 1 minuto!</h2>
+      <div class="wide-container">
+        <h3>Cada enemigo eliminado te da 5 puntos. ¡Consigue la máxima puntuación posible en 1 minuto!</h3>
+        <label for="name">Escribe tu nombre: </label>
+        <input type="text" id="name" placeholder="Nombre">
+      </div>
     </div>
 
     <button id="start-btn">INICIAR VENGANZA!</button>
@@ -66,7 +71,7 @@
   <div id="game-screen" class="container">
     <!-- Elementos del juego como puntuación, vidas, etc deberia ir aqui (dentro del game-screen pero fuera del game-box) -->
     <div id="timer">Tiempo restante: 01:00</div>
-    <div id="points">Puntuación: 0</div>
+    <div id="score">Puntuación: 0</div>
     <div id="game-box">
       <!-- Los elementos del juego serán añadidos desde JS con manipulación de DOM -->
     </div>
@@ -75,9 +80,8 @@
   <!-- PANTALLA FINAL -->
   <div id="game-over-screen" class="container">
     <img src="./images/roast-chicken.png" alt="Roast Chicken">
-
-    <h2>El pollito ha fracasado y lo han metido al horno. A veces la venganza no se sirve fría.</h2>
-
+    <h2>Puntuaciones: </h2>
+    <ul id="score-ranking"></ul>
     <button id="restart-btn">REINICIAR VENGANZA!</button>
   </div>
 

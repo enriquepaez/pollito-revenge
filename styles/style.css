@@ -44,16 +44,18 @@ body {
   max-width: 1200px;
 }
 
-#wide-container {
+.wide-container {
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#wide-container img {
+.wide-container img {
   width: 100%;
-  max-width: 800px;
+  max-width: 500px;
+  margin: 50px;
 }
 
 h2, h3, p {
@@ -61,24 +63,14 @@ h2, h3, p {
   font-family: "Roboto";
 }
 
-h2 {
-  width: 80%;
-  align-items: center;
-}
-
 p {
   font-size: 14px;
-}
-
-#wide-container img {
-  width: 100%;
-  max-width: 800px;
 }
 
 .content-container {
   justify-content: space-between;
   gap: 50px;
-  margin: 20px auto;
+  margin: 50px auto;
   width: 100%;
   max-width: 1200px;
 }
@@ -136,7 +128,7 @@ p {
   margin: 100px;
 }
 
-#timer, #points {
+#timer, #score {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -147,7 +139,7 @@ p {
   font-size: 18px;
 }
 
-#points {
+#score {
   top: 40px;
 }
 
@@ -164,6 +156,6 @@ p {
   max-width: 300px;
 }
 
-#game-over-screen h2 {
+#game-over-screen h3 {
   width: 50%;
 }

@@ -6,8 +6,10 @@ const gameScreenNode = document.querySelector("#game-screen")
 const gameOverScreenNode = document.querySelector("#game-over-screen")
 
 // interfaz
-const pointsDiv = document.getElementById("points");
+const scoreDisplay = document.getElementById("score");
 const timer = document.getElementById("timer");
+const inputName = document.getElementById("name");
+const scoreRanking = document.getElementById("score-ranking");
 
 // botones
 const startBtnNode = document.querySelector("#start-btn")
@@ -24,8 +26,11 @@ let knifesArray = [];
 let armsArray = [];
 let enemiesArray = [];
 let enemiesFrecuency = 500;
-let points = 0;
-let remainingTime = 59;
+let score = 0;
+let remainingTime = 10;
+let playerName = "";
+let totalScores = [];
+let bestScores = [];
 
 let gameIntervalId = null;
 let enemiesIntervalId = null;
@@ -43,6 +48,7 @@ function startGame() {
 
   // 2. Añadir todos los elementos iniciales del juego
   pollito = new Pollito();
+  playerName = inputName.value;
 
   // 3. Iniciar el intervalo de juego
   gameIntervalId = setInterval(() => {
@@ -171,8 +177,8 @@ function killEnemy() {
     });
 
     if (eachEnemy.life <= 0) {
-      points += 5;
-      pointsDiv.innerHTML = `Puntuación: ${points}`;
+      score += 5;
+      scoreDisplay.innerHTML = `Puntuación: ${score}`;
       eachEnemy.node.remove();
       enemiesArray.splice(enemiesArray.indexOf(eachEnemy), 1);
     }
@@ -190,20 +196,72 @@ function gameOver() {
   // 2. Limpiar la caja de juego
   gameBoxNode.innerHTML = "";
 
-  // 3. Reiniciar todos los elementos del juego
+  // 3. Guardar la puntuación en el localStorage
+  saveScore(playerName, score);
+
+  // 4. Preparar pantalla final
+  const previousEndMessage = gameOverScreenNode.querySelector("h3");
+
+  if (previousEndMessage) {
+    previousEndMessage.remove();
+  }
+
+  const endMessage = document.createElement("h3");
+
+  if (remainingTime <= 0) {
+    endMessage.innerText = `¡Victoria del pollito! La venganza se sirve caliente y el granjero no sabe lo que le espera.\n\n${playerName}, has conseguido ${score} puntos.`;
+  } else {
+    endMessage.innerText = `El pollito ha fracasado y lo han metido al horno. A veces la venganza no se sirve fría.\n\n${playerName}, has conseguido ${score} puntos.`;
+  }
+
+  gameOverScreenNode.insertBefore(endMessage, scoreRanking);
+  scoreRanking.innerHTML = "";
+  showScores();
+
+  // 5. Reiniciar todos los elementos del juego
   pollito = null;
   knifesArray = [];
   armsArray = [];
   enemiesArray = [];
-  points = 0;
+  score = 0;
   remainingTime = 59;
-  pointsDiv.innerHTML = `Puntuación: ${points}`;
+  score.innerHTML = `Puntuación: ${score}`;
   timer.innerText = `Tiempo restante: 00:${remainingTime}`;
 
-
-  // 4. Cambiar de pantallas
+  // 6. Cambiar de pantallas
   gameScreenNode.style.display = "none";
   gameOverScreenNode.style.display = "flex";
+}
+
+// * FUNCIONES PARA LOCALSTORAGE
+
+function saveScore(name, score) {
+  const newScore = { name, score };
+
+  // Obtener puntuaciones existentes
+  totalScores = JSON.parse(localStorage.getItem("total-scores")) || [];
+
+  // Agregar la nueva puntuación
+  totalScores.push(newScore);
+
+  // Guardar en localStorage
+  localStorage.setItem("total-scores", JSON.stringify(totalScores));
+}
+
+function showScores() {
+  // Obtener las puntuaciones de localStorage
+  const totalScores = JSON.parse(localStorage.getItem("total-scores")) || [];
+
+  // Ordenar las puntuaciones de mayor a menor y sacar solo 10 primeras
+  totalScores.sort((a, b) => b.score - a.score);
+  bestScores = totalScores.slice(0, 5);
+
+  // Mostrar las puntuaciones
+  bestScores.forEach(eachScore => {
+      const li = document.createElement('li');
+      li.innerText = `${eachScore.name} - ${eachScore.score} puntos`;
+      scoreRanking.appendChild(li);
+  });
 }
 
 
