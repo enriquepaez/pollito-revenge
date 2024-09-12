@@ -12,9 +12,9 @@ const inputName = document.getElementById("name");
 const scoreRanking = document.getElementById("score-ranking");
 
 // audio
-const gameMusic = new Audio("../audio/game-music.mp3");
-const stabSound = new Audio("../audio/stab-sound.wav");
-const chickenSound = new Audio("../audio/chicken-sound.wav");
+const gameMusic = new Audio("./audio/game-music.mp3");
+const stabSound = new Audio("./audio/stab-sound.wav");
+const chickenSound = new Audio("./audio/chicken-sound.wav");
 
 // botones
 const startBtnNode = document.getElementById("start-btn");
