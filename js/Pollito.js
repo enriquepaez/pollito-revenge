@@ -4,8 +4,8 @@ class Pollito {
 
     this.x = 300;
     this.y = 200;
-    this.h = 30;
-    this.w = 30;
+    this.h = 50;
+    this.w = 50;
     this.speed = 10;
     this.canThrowKnife = true;
     this.lastKnifeDirection = null;
@@ -46,7 +46,7 @@ class Pollito {
   }
 
   throwKnife(direction) {
-    const knifeTimer = 150;
+    const knifeTimer = 300;
 
     if (this.canThrowKnife && this.lastKnifeDirection !== direction) {
       let newKnife = new Proyectile(this.x, this.y, direction, "knife");

@@ -4,23 +4,23 @@ class Enemy {
 
     this.x = x;
     this.y = y;
-    this.h = 40;
-    this.w = 40;
+    this.h = 60;
+    this.w = 60;
     this.startPosition = startPosition;
     this.type = type;
 
     this.node = document.createElement("img");
 
     if (type === "potato") {
-      this.speed = 2;
+      this.speed = 3;
       this.life = 1;
       this.node.src = "./images/potato.png";
     } else if (type === "naruto") {
-      this.speed = 4;
+      this.speed = 6;
       this.life = 1;
       this.node.src = "./images/naruto.png";
     } else if (type === "bob") {
-      this.speed = 1;
+      this.speed = 3;
       this.life = 2;
       this.node.src = "./images/bob.png";
     }

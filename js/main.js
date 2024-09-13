@@ -33,7 +33,7 @@ let pollito = null;
 let knifesArray = [];
 let armsArray = [];
 let enemiesArray = [];
-let enemiesFrecuency = 500;
+let enemiesFrecuency = 400;
 let score = 0;
 let remainingTime = 30;
 let playerName = "";
@@ -87,8 +87,13 @@ function startGame() {
   }, 1000);
 
   timerIntervalId = setInterval(() => {
-    timer.innerText = `Tiempo restante: 00:${remainingTime}`;
     remainingTime--;
+    
+    if (remainingTime < 10) {
+      timer.innerText = `Tiempo restante: 00:0${remainingTime}`;
+    } else {
+      timer.innerText = `Tiempo restante: 00:${remainingTime}`;
+    }
 
     if (remainingTime <= 0) {
       gameOver();
@@ -234,7 +239,8 @@ function gameOver() {
 
   if (remainingTime <= 0) {
     score += 100;
-    gameOverImage.setAttribute("src", "./images/winner.png")
+    gameOverImage.setAttribute("src", "./images/winner-chicken.png");
+    gameOverImage.setAttribute("id", "game-win-image");
     endMessage.innerText = `¡Victoria del pollito! La venganza se sirve caliente y el granjero no sabe lo que le espera.\n\n${playerName}, has conseguido ${score} puntos.`;
   } else {
     endMessage.innerText = `El pollito ha fracasado y lo han metido al horno. A veces la venganza no se sirve fría.\n\n${playerName}, has conseguido ${score} puntos.`;

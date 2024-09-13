@@ -14,7 +14,7 @@
   color: white;
   padding: 20px;
   font-size: 20px;
-  margin: 40px;
+  margin: 30px auto;
   border-radius: 10px;
   font-family: "Protest Guerrilla", sans-serif;
 }
@@ -74,7 +74,7 @@ p {
 .content-container {
   justify-content: space-between;
   gap: 50px;
-  margin: 50px auto;
+  margin-top: 30px;
   width: 100%;
   max-width: 1200px;
 }
@@ -126,7 +126,7 @@ p {
   border-radius: 5px;
   width: 100%;
   max-width: 300px;
-  margin: 10px 0;
+  margin-top: 30px;
   background-color:  rgba(255, 255, 255, 0.5);
 }
 
@@ -137,8 +137,8 @@ p {
 
 #game-box {
   background-color: darkgray;
-  width: 800px;
-  height: 800px;
+  width: 1000px;
+  height: 1000px;
   position: relative;
   overflow: hidden;
   user-select: none;
@@ -179,9 +179,15 @@ p {
   animation: rotation 0.25s infinite linear;
 }
 
-#game-over-screen img {
+#game-over-image {
   width: 30%;
   max-width: 300px;
+  margin-top: 50px;
+}
+
+#game-win-image {
+  width: 30%;
+  max-width: 200px;
   margin-top: 50px;
 }
 

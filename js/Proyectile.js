@@ -3,8 +3,8 @@ class Proyectile {
   constructor(x, y, direction, type) {
     this.x = x;
     this.y = y;
-    this.h = 20;
-    this.w = 20;
+    this.h = 30;
+    this.w = 30;
     this.speed = 10;
     this.direction = direction;
     this.type = type;
