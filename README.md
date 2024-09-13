@@ -1,8 +1,8 @@
 # POLLITO REVENGE
 
-## [Play the game!]((https://enriquepaez.github.io/pollito-revenge/))
+## [Play the game!](https://enriquepaez.github.io/pollito-revenge/)
 
-![Game Logo]("./images/pollito-revenge-logo.png")
+![Game Logo](https://github.com/enriquepaez/pollito-revenge/blob/master/images/pollito-revenge-logo.png)
 
 
 # Description
