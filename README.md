@@ -52,3 +52,7 @@ Get ready for fast-paced action and fun as you help the chick unleash its fury o
 
 ## Deploy
 [Link](https://enriquepaez.github.io/pollito-revenge/)
+
+# Especial thanks
+
+To breakout room 12, without them none of this would be possible.
