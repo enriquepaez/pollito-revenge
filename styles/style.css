@@ -137,8 +137,8 @@ p {
 
 #game-box {
   background-color: darkgray;
-  width: 600px;
-  height: 600px;
+  width: 800px;
+  height: 800px;
   position: relative;
   overflow: hidden;
   user-select: none;
